@@ -73,6 +73,27 @@ module Chars
     end
 
     alias include_byte? include?
+
+    #
+    # Determines if a character or byte exists in the set.
+    #
+    # @param [String, Integer] char
+    #   The character or byte.
+    #
+    # @return [Boolean]
+    #   Specifies whether the character or byte exists in the set.
+    #
+    def include?(char)
+      case char
+      when Integer
+        include_byte?(char)
+      when String
+        include_char?(char)
+      else
+        false
+      end
+    end
+
     alias bytes to_a
     alias each_byte each
     alias select_bytes select
