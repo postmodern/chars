@@ -47,12 +47,22 @@ describe Chars::CharSet do
     end
   end
 
-  it "should include Strings" do
-    subject.include_char?('A').should == true
+  it "should include characters" do
+    subject.include_char?('A').should be_true
   end
 
-  it "should include Integers" do
-    subject.should include(0x41)
+  it "should include bytes" do
+    subject.include_byte?(0x41).should be_true
+  end
+
+  describe "#include?" do
+    it "should accept characters" do
+      subject.should include('A')
+    end
+
+    it "should accept bytes" do
+      subject.should include(0x41)
+    end
   end
 
   it "should be able to select bytes" do
